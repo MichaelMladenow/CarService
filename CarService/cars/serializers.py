@@ -1,8 +1,20 @@
-from cars.models import Car
+from cars.models import Brand, Model, Car
 from rest_framework import serializers
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class BrandSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Brand
+        fields = ['name']
+
+
+class ModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Model
+        fields = ['name', 'brand']
+
+
+class CarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Car
-        fields = ['Model', 'Brand', 'License Plate']
+        fields = ['model', 'license_plate']
