@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users import urls as user_urls
+from frontend import urls as frontend_urls
 
 urlpatterns = [
     path('users/', include(user_urls)),
+    path('', include(frontend_urls)),
     path('admin/', admin.site.urls),
 ]
