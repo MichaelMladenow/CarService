@@ -1,4 +1,4 @@
-from cars.models import Brand, Model, Car
+from cars.models import Brand, Model, Car, UserCar
 from rest_framework import serializers
 
 
@@ -17,4 +17,10 @@ class ModelSerializer(serializers.HyperlinkedModelSerializer):
 class CarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Car
-        fields = ['model', 'license_plate']
+        fields = ['model']
+
+
+class UserCarSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserCar
+        fields = ['car', 'model']
