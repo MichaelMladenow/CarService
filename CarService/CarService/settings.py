@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'frontend'
 ]
 
-REST_FRAMEWORK = {
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.my_jwt_response_handler'
 }
 
 REST_FRAMEWORK = {

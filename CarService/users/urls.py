@@ -4,15 +4,20 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 from users import views
 
 router = routers.DefaultRouter()
-router.register(r'', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+
 urlpatterns = [
     path('', include(router.urls)),
+
+    path('register', views.RegisterUser.as_view(), name='register'),
+    path('user', views.current_user, name='get-current-user'),
+
+    # make sure login and logout are accessible only
+    # via post requests from rest_framework
     path('', include('rest_framework.urls', namespace='rest_framework')),
-    path('api-token/obtain', obtain_jwt_token),
-    path('api-token/refresh', refresh_jwt_token),
-    path('api-token/verify', verify_jwt_token)
+
+    path('api-token/obtain', obtain_jwt_token, name='obtain-api-token'),
+    path('api-token/refresh', refresh_jwt_token, name='refresh-api-token'),
+    path('api-token/verify', verify_jwt_token, name='verify-api-token')
 ]
